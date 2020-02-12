@@ -1,0 +1,19 @@
+ion-content {
+  --ion-background-color: #e6e6e6;
+}
+ion-header {
+  --ion-background-color: #6c33a2;
+}
+ion-title {
+  color: white;
+}
+ion-button {
+  --background: #aaaaaa;
+  --background-activated: #aaaaaa;
+  --background-hover: #aaaaaa;
+  font-weight: bold;
+  color: black;
+}
+ion-footer {
+  --ion-background-color: darkgray;
+}

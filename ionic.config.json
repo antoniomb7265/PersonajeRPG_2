@@ -1,0 +1,7 @@
+{
+  "name": "PPersonajeRPG",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

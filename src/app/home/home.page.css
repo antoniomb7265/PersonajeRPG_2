@@ -1,0 +1,15 @@
+ion-content {
+  --ion-background-color: #e6e6e6;
+}
+ion-header {
+  --ion-background-color: #6c33a2;
+}
+ion-title {
+  color: white;
+}
+ion-button {
+  --ion-color: #98ee99;
+}
+ion-footer {
+  --ion-background-color: darkgray;
+}
