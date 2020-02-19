@@ -16,7 +16,7 @@ export class HomePage {
     id: "",
     data: {} as Personaje
    }];
-  
+    
   // arrayConfiguracion: any = {
   // aqui se establecerian las variables locales que guardaria el array de configuracion
   // };
