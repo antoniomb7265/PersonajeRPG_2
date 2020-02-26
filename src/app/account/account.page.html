@@ -1,9 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>account</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Ejemplo login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <p>Email: {{ userEmail }}</p>
+  <p>UID: {{ userUID }}</p>
+  <ion-button (click)="login()">Log in</ion-button>
+  <ion-button (click)="logout()">Log out</ion-button>
 </ion-content>
