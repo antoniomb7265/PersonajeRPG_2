@@ -7,6 +7,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-detalle',
@@ -15,6 +16,11 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 })
 
 export class DetallePage implements OnInit {
+
+  // userEmail: String = "";
+  // userUID: String = "";
+  isLogged: boolean;
+
   id = null;
   document: any = {
     id: "",
@@ -29,7 +35,8 @@ export class DetallePage implements OnInit {
               public alertController: AlertController,
               private activatedRoute: ActivatedRoute,
               private firestoreService: FirestoreService,
-              private router: Router) {
+              private router: Router,
+              public afAuth: AngularFireAuth) {
     this.firestoreService.consultarPorId("personaje", this.activatedRoute.snapshot.paramMap.get("id")).subscribe((resultado) => {
       // Preguntar si se hay encontrado un document con ese ID
       if(resultado.payload.data() != null) {
@@ -49,6 +56,17 @@ export class DetallePage implements OnInit {
     });
   }
   
+  ionViewDidEnter() {
+    this.isLogged = false;
+    this.afAuth.user.subscribe(user => {
+      if(user){
+        // this.userEmail = user.email;
+        // this.userUID = user.uid;
+        this.isLogged = true;
+      }
+    })
+  }
+
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
   }
@@ -75,6 +93,10 @@ export class DetallePage implements OnInit {
 
   volver(){
     this.router.navigate(["/home"]);
+  }
+
+  perfil(){
+    this.router.navigate(["/home-login"]);
   }
 
   async presentAlertConfirm() {

@@ -12,7 +12,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class HomeLoginPage {
 
   userEmail: String = "";
-  userUID: String = "";
   isLogged: boolean;
 
   
@@ -28,7 +27,6 @@ export class HomeLoginPage {
     this.afAuth.user.subscribe(user => {
       if(user){
         this.userEmail = user.email;
-        this.userUID = user.uid;
         this.isLogged = true;
       }
     })
@@ -42,9 +40,25 @@ export class HomeLoginPage {
     this.authService.doLogout()
     .then(res => {
       this.userEmail = "";
-      this.userUID = "";
       this.isLogged = false;
       console.log(this.userEmail);
     }, err => console.log(err));
   }
+
+  configurar() {
+    this.router.navigate(["/configurar/"]);
+  }
+
+  mapa() {
+    this.router.navigate(["/mapa/"]);
+  }
+
+  volver(){
+    this.router.navigate(["/home"]);
+  }
+
+  perfil(){
+    this.router.navigate(["/home-login"]);
+  }
+
 }

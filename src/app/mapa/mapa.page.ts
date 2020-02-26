@@ -42,6 +42,10 @@ export class MapaPage implements OnInit {
     this.router.navigate(["/home"]);
   }
 
+  perfil(){
+    this.router.navigate(["/home-login"]);
+  }
+
   loadMap() {
     this.map = new Map("mapId").setView([36.6768853, -5.4469035], 19);
     tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {attribution:

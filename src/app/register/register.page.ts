@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
+  value: any = {
+    email: "email",
+    password: "password"
+  };
+
+  isCreated: Boolean = false;
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
@@ -49,14 +55,33 @@ export class RegisterPage implements OnInit {
        console.log(res);
        this.errorMessage = "";
        this.successMessage = "Your account has been created. Please log in.";
+       this.isCreated = true;
      }, err => {
        console.log(err);
        this.errorMessage = err.message;
        this.successMessage = "";
+       this.isCreated = false;
      })
   }
 
   goLoginPage(){
     this.router.navigate(["/login"]);
   }
+
+  configurar() {
+    this.router.navigate(["/configurar/"]);
+  }
+
+  mapa() {
+    this.router.navigate(["/mapa/"]);
+  }
+
+  volver(){
+    this.router.navigate(["/home"]);
+  }
+
+  perfil(){
+    this.router.navigate(["/home-login"]);
+  }
+
 }

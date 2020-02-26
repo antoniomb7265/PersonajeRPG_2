@@ -10,3 +10,13 @@
   <ion-button (click)="login()">Log in</ion-button>
   <ion-button (click)="logout()">Log out</ion-button>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar align="center">
+    <ion-button slot="start" color="tertiary" (click)="mapa()"><ion-icon name="map"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="volver()"><ion-icon name="home"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="perfil()"><ion-icon name="contact"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="llamar()"><ion-icon name="call"></ion-icon></ion-button>
+    <ion-button slot="end" color="tertiary" (click)="configurar()"><ion-icon name="build"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -4,6 +4,7 @@ import { Personaje } from '../personaje';
 import { Router } from "@angular/router";
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 })
 
 export class HomePage {
+  isLogged: boolean;
   arrayColeccionPersonajes: any = [{
     id: "",
     data: {} as Personaje
@@ -27,7 +29,8 @@ export class HomePage {
   constructor(private firestoreService: FirestoreService,
               private callNumber: CallNumber ,// Llamar por telefono
               private router: Router,
-              private screenOrientation: ScreenOrientation) {
+              private screenOrientation: ScreenOrientation,
+              public afAuth: AngularFireAuth) {
     this.obtenerListaPersonaje();
 
     if(window.screen.width>window.screen.height)
@@ -47,6 +50,16 @@ export class HomePage {
     );
   }
 
+  ionViewDidEnter() {
+    this.isLogged = false;
+    this.afAuth.user.subscribe(user => {
+      if(user){
+        // this.userEmail = user.email;
+        // this.userUID = user.uid;
+        this.isLogged = true;
+      }
+    })
+  }
 
   clicBotonInsertar() {
     this.router.navigate(["/detalle/nuevo"]);
@@ -92,6 +105,10 @@ export class HomePage {
   
   volver(){
     this.router.navigate(["/home"]);
+  }
+
+  perfil(){
+    this.router.navigate(["/home-login"]);
   }
 
   llamar() {

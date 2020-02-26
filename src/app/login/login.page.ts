@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class LoginPage {
 
   value: any = {
-    email: "",
-    password: ""
+    email: "email@gmail.com",
+    password: "password"
   };
 
   validations_form: FormGroup;
@@ -61,4 +61,21 @@ export class LoginPage {
   goRegisterPage(){
     this.router.navigate(["/register"]);
   }
+
+  configurar() {
+    this.router.navigate(["/configurar/"]);
+  }
+
+  mapa() {
+    this.router.navigate(["/mapa/"]);
+  }
+
+  volver(){
+    this.router.navigate(["/home"]);
+  }
+
+  perfil(){
+    this.router.navigate(["/home-login"]);
+  }
+
 }

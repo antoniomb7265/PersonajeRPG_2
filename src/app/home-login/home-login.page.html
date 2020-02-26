@@ -1,12 +1,21 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Ejemplo login</ion-title>
+  <ion-toolbar>
+    <ion-title>Inicio - Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <p>Email: {{ userEmail }}</p>
-  <p>UID: {{ userUID }}</p>
-  <ion-button (click)="login()">Log in</ion-button>
-  <ion-button (click)="logout()">Log out</ion-button>
+  <p *ngIf = "isLogged">Sesión iniciada con el correo <b>{{ userEmail }}</b></p>
+  <p *ngIf = "!isLogged">Sesión no iniciada</p>
+  <ion-button color="tertiary" (click)="login()" *ngIf = "!isLogged">Log in</ion-button>
+  <ion-button color="tertiary" (click)="logout()" *ngIf = "isLogged">Log out</ion-button>
 </ion-content>
+<ion-footer>
+  <ion-toolbar align="center">
+    <ion-button slot="start" color="tertiary" (click)="mapa()"><ion-icon name="map"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="volver()"><ion-icon name="home"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="perfil()"><ion-icon name="contact"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="llamar()"><ion-icon name="call"></ion-icon></ion-button>
+    <ion-button slot="end" color="tertiary" (click)="configurar()"><ion-icon name="build"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-footer>

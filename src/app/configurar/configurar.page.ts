@@ -34,4 +34,8 @@ export class ConfigurarPage implements OnInit {
   volver(){
     this.router.navigate(["/home"]);
   }
+
+  perfil(){
+    this.router.navigate(["/home-login"]);
+  }
 }
