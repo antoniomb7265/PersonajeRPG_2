@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-home-login',
@@ -19,6 +20,7 @@ export class HomeLoginPage {
     public loadingCtrl: LoadingController,
     private authService: AuthService,
     private router: Router,
+    private callNumber: CallNumber, // Llamar por telefono
     public afAuth: AngularFireAuth
   ) { }
   
@@ -45,10 +47,6 @@ export class HomeLoginPage {
     }, err => console.log(err));
   }
 
-  configurar() {
-    this.router.navigate(["/configurar/"]);
-  }
-
   mapa() {
     this.router.navigate(["/mapa/"]);
   }
@@ -59,6 +57,12 @@ export class HomeLoginPage {
 
   perfil(){
     this.router.navigate(["/home-login"]);
+  }
+
+  llamar() {
+    this.callNumber.callNumber("666666666", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
 }

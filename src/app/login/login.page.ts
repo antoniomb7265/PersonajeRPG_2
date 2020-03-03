@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private callNumber: CallNumber, // Llamar por telefono
     private router: Router
   ) { }
 
@@ -61,11 +63,7 @@ export class LoginPage {
   goRegisterPage(){
     this.router.navigate(["/register"]);
   }
-
-  configurar() {
-    this.router.navigate(["/configurar/"]);
-  }
-
+  
   mapa() {
     this.router.navigate(["/mapa/"]);
   }
@@ -76,6 +74,13 @@ export class LoginPage {
 
   perfil(){
     this.router.navigate(["/home-login"]);
+  }
+
+
+  llamar() {
+    this.callNumber.callNumber("666666666", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
 }

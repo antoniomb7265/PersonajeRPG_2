@@ -14,7 +14,7 @@ export class MapaPage implements OnInit {
 
   constructor(
             private router: Router,
-            private callNumber: CallNumber ,// Llamar por telefono
+            private callNumber: CallNumber // Llamar por telefono
   ) {
   }
   ionViewDidEnter() {
@@ -25,15 +25,11 @@ export class MapaPage implements OnInit {
   }
 
   llamar() {
-    this.callNumber.callNumber("684073639", true)
+    this.callNumber.callNumber("666666666", true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }
-
-  configurar() {
-    this.router.navigate(["/configurar/"]);
-  }
-
+  
   mapa() {
     this.router.navigate(["/mapa/"]);
   }

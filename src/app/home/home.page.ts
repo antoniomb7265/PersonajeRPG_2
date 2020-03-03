@@ -65,10 +65,6 @@ export class HomePage {
     this.router.navigate(["/detalle/nuevo"]);
   }
   
-  configurar() {
-    this.router.navigate(["/configurar/"]);
-  }
-  
   mapa() {
     this.router.navigate(["/mapa/"]);
   }
@@ -112,7 +108,7 @@ export class HomePage {
   }
 
   llamar() {
-    this.callNumber.callNumber("684073639", true)
+    this.callNumber.callNumber("666666666", true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }

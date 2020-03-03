@@ -5,13 +5,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </ion-header>
-<!-- <ion-content>
-  My ID is: {{ id }} 
-  <p> Nombre: {{ document.data.nombre }} </p>
-  <p> Descripcion: {{ document.data.descripcion }} </p>
-</ion-content> -->
 <ion-content *ngIf = "isLogged">
   <ion-item>
     <ion-label><b>Nombre: </b></ion-label>
@@ -29,19 +23,30 @@
     <ion-label><b>Primera aparición: </b></ion-label>
     <ion-textarea [(ngModel)]="document.data.aparicion"></ion-textarea>
   </ion-item>
-  <ion-item>
-    <ion-label><b>Url de la imagen: </b></ion-label>
-    <ion-textarea [(ngModel)]="document.data.imagen"></ion-textarea>
+  <ion-item *ngIf="id!='nuevo'">
+    <ion-button class="botones" id="botonImagen" (click)="uploadImagePicker()" size="xl"><ion-icon name="image"></ion-icon></ion-button>
   </ion-item>
-  <ion-item>
-    <ion-button class="botones" id="botonModificar" (click)="clicBotonModificar()">Guardar</ion-button>
-    <ion-button class="botones" id="botonBorrar" (click)="presentAlertConfirm()">Borrar</ion-button>
+  <ion-item *ngIf="id=='nuevo'">
+    <ion-button class="botones" id="botonImagen" (click)="uploadImagePicker()">Añadir imagen</ion-button>
   </ion-item>
-  <ion-item>
-    <ion-button class="botones" id="botonImagen" (click)="uploadImagePicker()">Cambiar imagen</ion-button>
+  <ion-item *ngIf="id!='nuevo'">
+    <ion-img [src]="document.data.imagen"></ion-img>
+  </ion-item>
+  <ion-item *ngIf="id!='nuevo'">
+    <ion-button color="tertiary" (click)="regularShare()" size="xl"><ion-icon name="share"></ion-icon></ion-button>
     <ion-button color="tertiary" (click)="whatsappShare()" size="xl"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="twitterShare()" size="xl"><ion-icon name="logo-twitter"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="facebookShare()" size="xl"><ion-icon name="logo-facebook"></ion-icon></ion-button>
   </ion-item>
-</ion-content><ion-content *ngIf = "!isLogged">
+  <ion-item *ngIf="id!='nuevo'">
+    <ion-button class="botones" id="botonModificar" (click)="clicBotonModificar()" size="xl"><ion-icon name="done-all"></ion-icon></ion-button>
+    <ion-button class="botones" id="botonBorrar" (click)="presentAlertConfirm()" size="xl"><ion-icon name="close"></ion-icon></ion-button>
+  </ion-item>
+  <ion-item *ngIf="id=='nuevo'">
+    <ion-button class="botones" id="botonModificar" (click)="clicBotonModificar()" size="xl"><ion-icon name="done-all"></ion-icon></ion-button>
+  </ion-item>
+</ion-content>
+<ion-content *ngIf = "!isLogged">
   <ion-item>
     <ion-label><b>Nombre: </b></ion-label>
     <ion-input [(ngModel)]="document.data.nombre" disabled></ion-input>
@@ -59,19 +64,22 @@
     <ion-textarea [(ngModel)]="document.data.aparicion" disabled></ion-textarea>
   </ion-item>
   <ion-item>
-    <ion-label><b>Url de la imagen: </b></ion-label>
-    <ion-textarea [(ngModel)]="document.data.imagen" disabled></ion-textarea>
+    <ion-img [src]="document.data.imagen"></ion-img>
   </ion-item>
   <ion-item>
+    <ion-button color="tertiary" (click)="regularShare()" size="xl"><ion-icon name="share"></ion-icon></ion-button>
     <ion-button color="tertiary" (click)="whatsappShare()" size="xl"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="twitterShare()" size="xl"><ion-icon name="logo-twitter"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="facebookShare()" size="xl"><ion-icon name="logo-facebook"></ion-icon></ion-button>
   </ion-item>
+  <ion-item>
+    </ion-item>
 </ion-content>
 <ion-footer>
   <ion-toolbar align="center">
     <ion-button slot="start" color="tertiary" (click)="mapa()"><ion-icon name="map"></ion-icon></ion-button>
-    <ion-button color="tertiary" (click)="volver()"><ion-icon name="home"></ion-icon></ion-button>
-    <ion-button color="tertiary" (click)="perfil()"><ion-icon name="contact"></ion-icon></ion-button>
     <ion-button color="tertiary" (click)="llamar()"><ion-icon name="call"></ion-icon></ion-button>
-    <ion-button slot="end" color="tertiary" (click)="configurar()"><ion-icon name="build"></ion-icon></ion-button>
+    <ion-button color="tertiary" (click)="volver()"><ion-icon name="home"></ion-icon></ion-button>
+    <ion-button slot="end" color="tertiary" (click)="perfil()"><ion-icon name="contact"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -32,7 +32,7 @@ export class DetallePage implements OnInit {
               private loadingController: LoadingController, // Controla el tiempo de carga
               private toastController: ToastController, // Muestra mensajes en la parte de abajo
               private imagePicker: ImagePicker, // Selector de imagenes en la galeria
-              public alertController: AlertController,
+              public alertController: AlertController, // 
               private activatedRoute: ActivatedRoute,
               private firestoreService: FirestoreService,
               private router: Router,
@@ -48,11 +48,6 @@ export class DetallePage implements OnInit {
         // No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
         this.document.data = {} as Personaje;
       } 
-      if (this.id == "nuevo") {
-        document.getElementById("botonModificar").innerHTML = "Añadir";
-        document.getElementById("botonImagen").innerHTML = "Añadir imagen";
-        document.getElementById("botonBorrar").setAttribute("class","invisible");
-      }
     });
   }
   
@@ -60,8 +55,6 @@ export class DetallePage implements OnInit {
     this.isLogged = false;
     this.afAuth.user.subscribe(user => {
       if(user){
-        // this.userEmail = user.email;
-        // this.userUID = user.uid;
         this.isLogged = true;
       }
     })
@@ -81,10 +74,6 @@ export class DetallePage implements OnInit {
     // } else{
     //   this.router.navigate(["/home"]);
     // }
-  }
-
-  configurar() {
-    this.router.navigate(["/configurar/"]);
   }
 
   mapa() {
@@ -222,8 +211,23 @@ export class DetallePage implements OnInit {
     this.socialSharing.shareViaWhatsApp(msg, null, null);
   }
 
+  twitterShare(){
+    var msg  = this.mensajeCompartir();
+    this.socialSharing.shareViaTwitter(msg, null, null);
+  }
+
+  facebookShare(){
+    var msg  = this.mensajeCompartir();
+    this.socialSharing.shareViaFacebook(msg, null, null);
+  }
+  
+  regularShare(){
+    var msg = this.mensajeCompartir();
+    this.socialSharing.share(msg, null, null, null);
+  }
+
   llamar() {
-    this.callNumber.callNumber("684073639", true)
+    this.callNumber.callNumber("666666666", true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -33,6 +35,7 @@ export class RegisterPage implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private callNumber: CallNumber, // Llamar por telefono
     private router: Router
   ) { }
 
@@ -68,10 +71,6 @@ export class RegisterPage implements OnInit {
     this.router.navigate(["/login"]);
   }
 
-  configurar() {
-    this.router.navigate(["/configurar/"]);
-  }
-
   mapa() {
     this.router.navigate(["/mapa/"]);
   }
@@ -82,6 +81,12 @@ export class RegisterPage implements OnInit {
 
   perfil(){
     this.router.navigate(["/home-login"]);
+  }
+
+  llamar() {
+    this.callNumber.callNumber("666666666", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
 }
